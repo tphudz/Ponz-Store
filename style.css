@@ -2694,3 +2694,243 @@ button,
     width:100%;
 
 }
+/*==========================================
+    PREMIUM ENGINE
+==========================================*/
+
+.cursor-glow{
+
+    position:fixed;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:999999;
+
+    transform:translate(-50%,-50%);
+
+    background:rgba(56,217,255,.22);
+
+    backdrop-filter:blur(4px);
+
+    box-shadow:
+        0 0 30px rgba(56,217,255,.7),
+        0 0 60px rgba(56,217,255,.3);
+
+    transition:
+        left .05s linear,
+        top .05s linear;
+
+}
+
+/*==========================================
+    GALAXY PARTICLE
+==========================================*/
+
+.galaxy-particle{
+
+    position:absolute;
+
+    bottom:-20px;
+
+    width:4px;
+
+    height:4px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    opacity:.8;
+
+    box-shadow:
+        0 0 12px #38d9ff;
+
+    animation:
+        galaxyFloat linear forwards;
+
+}
+
+@keyframes galaxyFloat{
+
+    from{
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:
+            translateY(-800px)
+            scale(1.4);
+
+        opacity:0;
+
+    }
+
+}
+
+/*==========================================
+    PERFORMANCE MODE
+==========================================*/
+
+.low-performance .galaxy-particle,
+
+.low-performance .cursor-glow,
+
+.low-performance .meteor{
+
+    display:none;
+
+}
+
+/*==========================================
+    THEME PLACEHOLDER
+==========================================*/
+
+body[data-theme="purple"]{
+
+    --primary:#a855f7;
+
+    --primary-light:#d8b4fe;
+
+}
+
+body[data-theme="cyber"]{
+
+    --primary:#00ff9d;
+
+    --primary-light:#7cffc5;
+
+}
+
+body[data-theme="blue"]{
+
+    --primary:#38d9ff;
+
+    --primary-light:#86ecff;
+
+}
+/*==========================================
+    PRODUCT MODAL
+==========================================*/
+
+.product-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:99999;
+
+}
+
+.product-modal.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.product-modal-box{
+
+    width:min(520px,92%);
+
+    padding:35px;
+
+    border-radius:24px;
+
+    background:#0b1224;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transform:scale(.9);
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+.product-modal.active .product-modal-box{
+
+    transform:scale(1);
+
+}
+
+.modal-close{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    background:none;
+
+    color:#fff;
+
+    font-size:24px;
+
+}
+
+#modalStatus{
+
+    display:inline-block;
+
+    margin-bottom:15px;
+
+    color:#22c55e;
+
+}
+
+.modal-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:30px 0;
+
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}

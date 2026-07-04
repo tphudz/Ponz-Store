@@ -946,3 +946,330 @@ document.addEventListener("DOMContentLoaded",()=>{
     APP.initUX();
 
 });
+/*==========================================
+    PREMIUM ENGINE
+==========================================*/
+
+Object.assign(APP,{
+
+    /*======================================
+        INIT PREMIUM
+    ======================================*/
+
+    initPremium(){
+
+        this.performanceOptimizer();
+
+        this.customCursor();
+
+        this.galaxyParticles();
+
+        this.themeEngine();
+
+    },
+
+    /*======================================
+        PERFORMANCE
+    ======================================*/
+
+    performanceOptimizer(){
+
+        const mobile=
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if(mobile){
+
+            document.body.classList.add("low-performance");
+
+            return;
+
+        }
+
+        if(
+            navigator.hardwareConcurrency &&
+            navigator.hardwareConcurrency<=4
+        ){
+
+            document.body.classList.add("low-performance");
+
+        }
+
+    },
+
+    /*======================================
+        CURSOR GLOW
+    ======================================*/
+
+    customCursor(){
+
+        if(window.innerWidth<992) return;
+
+        const cursor=document.createElement("div");
+
+        cursor.className="cursor-glow";
+
+        document.body.appendChild(cursor);
+
+        window.addEventListener("mousemove",(e)=>{
+
+            cursor.style.left=e.clientX+"px";
+
+            cursor.style.top=e.clientY+"px";
+
+        });
+
+    },
+
+    /*======================================
+        GALAXY PARTICLES
+    ======================================*/
+
+    galaxyParticles(){
+
+        if(document.body.classList.contains("low-performance")) return;
+
+        const hero=document.querySelector(".hero");
+
+        if(!hero) return;
+
+        setInterval(()=>{
+
+            const p=document.createElement("span");
+
+            p.className="galaxy-particle";
+
+            p.style.left=Math.random()*100+"%";
+
+            p.style.animationDuration=
+            6+Math.random()*8+"s";
+
+            hero.appendChild(p);
+
+            setTimeout(()=>{
+
+                p.remove();
+
+            },14000);
+
+        },350);
+
+    },
+
+    /*======================================
+        THEME ENGINE
+    ======================================*/
+
+    themeEngine(){
+
+        window.PONZDZTheme={
+
+            set(theme){
+
+                document.body.dataset.theme=theme;
+
+            },
+
+            current(){
+
+                return document.body.dataset.theme || "blue";
+
+            }
+
+        };
+
+    }
+
+});
+
+/*==========================================
+    START PREMIUM
+==========================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    APP.initPremium();
+
+});
+/*==========================================
+    PRODUCT ENGINE
+==========================================*/
+
+Object.assign(APP,{
+
+    initProduct(){
+
+        this.productDatabase();
+
+        this.productModal();
+
+    },
+
+    productDatabase(){
+
+        this.products={
+
+            "AIM BODY V3":{
+
+                price:"45.000₫",
+
+                version:"3.1.2",
+
+                status:"🟢 Operational",
+
+                description:"Premium aiming solution with continuous updates."
+
+            },
+
+            "AIM DRAG V2":{
+
+                price:"40.000₫",
+
+                version:"2.8.5",
+
+                status:"🟢 Operational",
+
+                description:"Stable performance with frequent updates."
+
+            },
+
+            "MENU FLUORITE":{
+
+                price:"90.000₫",
+
+                version:"4.0.0",
+
+                status:"🟡 Updating",
+
+                description:"Premium package with multiple license options."
+
+            },
+
+            "MENU MIGUL":{
+
+                price:"10.000₫",
+
+                version:"1.6",
+
+                status:"🟢 Operational",
+
+                description:"Lite & Pro versions available."
+
+            },
+
+            "MENU DRIP":{
+
+                price:"85.000₫",
+
+                version:"2.0",
+
+                status:"🟢 Operational",
+
+                description:"Optimized Android package."
+
+            },
+
+            "PROXY DRIP":{
+
+                price:"20.000₫",
+
+                version:"1.5",
+
+                status:"🟢 Operational",
+
+                description:"Instant activation."
+
+            },
+
+            "PING KILLER":{
+
+                price:"50.000₫",
+
+                version:"1.9",
+
+                status:"🔴 Maintenance",
+
+                description:"Currently under maintenance."
+
+            }
+
+        };
+
+    },
+
+    productModal(){
+
+        const modal=$("#productModal");
+
+        if(!modal) return;
+
+        const close=modal.querySelector(".modal-close");
+
+        document.querySelectorAll(".product-btn").forEach(btn=>{
+
+            btn.addEventListener("click",(e)=>{
+
+                e.preventDefault();
+
+                const card=btn.closest(".product-card");
+
+                const title=card.querySelector("h3").innerText;
+
+                const data=this.products[title];
+
+                if(!data) return;
+
+                $("#modalTitle").innerText=title;
+
+                $("#modalDescription").innerText=data.description;
+
+                $("#modalVersion").innerText=data.version;
+
+                $("#modalPrice").innerText=data.price;
+
+                $("#modalStatus").innerText=data.status;
+
+                modal.classList.add("active");
+
+            });
+
+        });
+
+        close.addEventListener("click",()=>{
+
+            modal.classList.remove("active");
+
+        });
+
+        modal.addEventListener("click",(e)=>{
+
+            if(e.target===modal){
+
+                modal.classList.remove("active");
+
+            }
+
+        });
+
+        document.addEventListener("keydown",(e)=>{
+
+            if(e.key==="Escape"){
+
+                modal.classList.remove("active");
+
+            }
+
+        });
+
+    }
+
+});
+
+/*==========================================
+    START PRODUCT
+==========================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    APP.initProduct();
+
+});
