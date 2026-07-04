@@ -48,14 +48,23 @@ const APP = {
 
     removeLoading(){
 
-        window.addEventListener("load",()=>{
+    const loader = document.getElementById("loader");
 
-            document.body.classList.add("loaded");
+    window.addEventListener("load",()=>{
 
-        });
+        document.body.classList.add("loaded");
 
-    },
+        setTimeout(()=>{
 
+            if(loader){
+                loader.remove();
+            }
+
+        },600);
+
+    });
+
+},
 /*==========================================
     BACK TO TOP
 ==========================================*/
